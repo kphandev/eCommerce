@@ -10,9 +10,10 @@ import {
   ListGroupItem,
 } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+import products from '../../../backend/data/products'
 
 const ProductScreen = ({ match }) => {
+  // displays product url according to id
   const product = products.find((p) => p._id === match.params.id)
   return (
     <>
