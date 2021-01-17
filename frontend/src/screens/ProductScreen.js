@@ -19,7 +19,7 @@ import Rating from '../components/Rating'
 
 //match gets you info from the url
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
 
   const dispatch = useDispatch()
 
@@ -91,7 +91,7 @@ const ProductScreen = ({ history, match }) => {
                 {product.countInStock > 0 && (
                   <ListGroupItem>
                     <Row>
-                      <Col>QTY</Col>
+                      <Col>Qty: </Col>
                       <Col>
                         <Form.Control
                           as='select'
