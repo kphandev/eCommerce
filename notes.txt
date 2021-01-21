@@ -1,0 +1,1 @@
+Front end: constants -> reducers -> store -> Actions
