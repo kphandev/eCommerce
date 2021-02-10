@@ -62,7 +62,7 @@ const ShippingScreen = ({ history }) => {
           </Form.Group>
 
           <Form.Group controlId='country'>
-            <Form.Label>country</Form.Label>
+            <Form.Label>Country</Form.Label>
             <Form.Control
               type='text'
               placeholder='Enter Country'
