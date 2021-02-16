@@ -6,6 +6,7 @@ import {
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAIL,
 } from '../constants/orderConstants'
+import { logout } from '../actions/userActions'
 import axios from 'axios'
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -59,18 +60,24 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(`/api/orders/${id}`, config)
+    console.log(data)
+    console.log(id)
 
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data,
     })
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
     dispatch({
       type: ORDER_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: message,
     })
   }
 }

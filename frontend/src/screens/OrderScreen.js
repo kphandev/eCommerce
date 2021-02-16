@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import Message from '../components/Loader'
+import Loader from '../components/Loader'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { getOrderDetails } from '../actions/orderActions'
 
@@ -15,8 +15,22 @@ const OrderScreen = ({ match }) => {
   const { order, loading, error } = orderDetails
 
   useEffect(() => {
+    console.log(orderId)
     dispatch(getOrderDetails(orderId))
-  }, [])
+  }, [order])
+
+  if (!loading) {
+    const addDecimals = (num) => {
+      return (Math.round(num * 100) / 100).toFixed(2)
+    }
+
+    order.itemsPrice = order.orderItems
+      .reduce((acc, item) => acc + item.price * item.qty, 0)
+      .toFixed(2)
+    console.log('Ze order')
+    console.log(order)
+    console.log(orderId)
+  }
 
   return loading ? (
     <Loader />
@@ -24,12 +38,16 @@ const OrderScreen = ({ match }) => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1>Order #{order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>{order.createdAt}</h2>
+              <h2>Shipped to:</h2>
+              <strong>Name: </strong> {order.user}
+              <a href={`mailto:${order.user}`}>{order.user.name}</a>
+              <br></br>
               <p>
                 <b>
                   Address:
@@ -45,7 +63,7 @@ const OrderScreen = ({ match }) => {
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <b>Method: </b>
-              {order.paymentMethod.paymentMethod}
+              {order.paymentMethod}
             </ListGroup.Item>
 
             <ListGroup.Item>

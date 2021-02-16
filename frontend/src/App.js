@@ -12,6 +12,7 @@ import ProfileScreen from './screens/ProfileScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
+import OrderScreen from './screens/OrderScreen'
 
 //can only return a single element
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <main className='py-3'>
         <Container>
           {/* exact makes it so only '/' loads HomeScreen */}
+          <Route path='/orders/:id' component={OrderScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />
