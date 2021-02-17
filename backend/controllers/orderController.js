@@ -47,8 +47,6 @@ const getOrderById = asyncHandler(async (req, res) => {
   )
 
   if (order) {
-    console.log('backend')
-    console.log(order)
     res.json(order)
   } else {
     res.status(404)
