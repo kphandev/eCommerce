@@ -23,6 +23,8 @@ import {
   orderDetailsReducer,
   orderPayReducer,
   orderListMyReducer,
+  orderListReducer,
+  orderDeleteReducer,
 } from './reducers/orderReducers'
 
 //these are the states that will show up
@@ -46,6 +48,8 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderList: orderListReducer,
+  orderDelete: orderDeleteReducer,
   orderListMy: orderListMyReducer,
 })
 
