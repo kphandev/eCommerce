@@ -4,13 +4,16 @@ import Product from '../models/productModel.js'
 // gets all products
 // /api/products
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({})
+  const products = await Product.find({}).populate('user', 'name email')
 
   res.json(products)
 })
 
 const getProductById = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id)
+  const product = await Product.findById(req.params.id).populate(
+    'user',
+    'name email'
+  )
   if (product) {
     res.json(product)
   } else {
