@@ -21,7 +21,7 @@ const PlaceOrderScreen = ({ history }) => {
     .toFixed(2)
 
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
-  cart.taxPrice = addDecimals(Number(0.15 * cart.itemsPrice))
+  cart.taxPrice = addDecimals(Number(0.15 * cart.itemsPrice).toFixed(2))
   cart.totalPrice = addDecimals(
     Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
   )
@@ -33,6 +33,7 @@ const PlaceOrderScreen = ({ history }) => {
     if (success) {
       history.push(`/orders/${order._id}`)
     }
+    // eslint-disable-next-line
   }, [history, success])
 
   const placeOrderHandler = () => {
