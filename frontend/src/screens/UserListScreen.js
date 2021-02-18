@@ -41,30 +41,27 @@ const UserListScreen = ({ history }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className='table-sm'>
+        <Table striped bordered responsive hover condensed className='table-sm'>
           <thead>
             <tr>
-              <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
-              <th>ADMIN</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
                 <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
+                  {user.name}{' '}
+                  {user.isAdmin ? (
+                    <i className='fas fa-crown' style={{ color: 'green' }}></i>
+                  ) : (
+                    <div></div>
+                  )}
                 </td>
                 <td>
-                  {user.isAdmin ? (
-                    <i className='fas fa-check' style={{ color: 'green' }}></i>
-                  ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
-                  )}
+                  <a href={`mailto:${user.email}`}>{user.email}</a>
                 </td>
                 <td>
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
