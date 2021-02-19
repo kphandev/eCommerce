@@ -24,6 +24,7 @@ import {
   orderPayReducer,
   orderListMyReducer,
   orderListReducer,
+  orderDeliverReducer,
 } from './reducers/orderReducers'
 
 //these are the states that will show up
@@ -47,6 +48,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
   orderList: orderListReducer,
   orderListMy: orderListMyReducer,
 })
