@@ -14,9 +14,6 @@ import {
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAIL,
-  ORDER_DELETE_FAIL,
-  ORDER_DELETE_REQUEST,
-  ORDER_DELETE_SUCCESS,
 } from '../constants/orderConstants'
 import { logout } from '../actions/userActions'
 import axios from 'axios'
@@ -210,38 +207,6 @@ export const listOrders = () => async (dispatch, getState) => {
     dispatch({
       type: ORDER_LIST_FAIL,
       payload: message,
-    })
-  }
-}
-
-export const deleteOrder = (id) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: ORDER_DELETE_REQUEST,
-    })
-
-    const {
-      userLogin: { userInfo },
-    } = getState()
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
-
-    await axios.delete(`/api/orders/${id}`, config)
-
-    dispatch({
-      type: ORDER_DELETE_SUCCESS,
-    })
-  } catch (error) {
-    dispatch({
-      type: ORDER_DELETE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
     })
   }
 }

@@ -94,27 +94,10 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
-// Delete order
-// delete /api/orders/:id
-// private/admin
-
-const deleteOrders = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
-
-  if (order) {
-    await order.remove()
-    res.json({ message: `Order ${order.name} removed` })
-  } else {
-    res.status(404)
-    throw new Error('Order not Found')
-  }
-})
-
 export {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
   getMyOrders,
   getOrders,
-  deleteOrders,
 }
