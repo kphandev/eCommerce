@@ -53,6 +53,9 @@ const OrderScreen = ({ match, history }) => {
   // setsSdkReady to true
   // adds the script to the body
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login')
+    }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
       const script = document.createElement('script')
@@ -218,17 +221,20 @@ const OrderScreen = ({ match, history }) => {
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}
-              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                <ListGroup.Item>
-                  <Button
-                    type='button'
-                    className='btn btn-block'
-                    onClick={deliverHandler}
-                  >
-                    Mark As Delivered
-                  </Button>
-                </ListGroup.Item>
-              )}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type='button'
+                      className='btn btn-block'
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>
