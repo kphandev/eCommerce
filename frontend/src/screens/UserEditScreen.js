@@ -11,6 +11,7 @@ import {
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
+import Meta from '../components/Meta'
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
@@ -55,6 +56,7 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title={`Editting: ${name}`} />
       <Link to='/admin/userlist' className='btn btn-light my-3'>
         Go Back
       </Link>

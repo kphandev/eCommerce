@@ -6,6 +6,7 @@ import { listUsers, deleteUser } from '../actions/userActions'
 
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -49,6 +50,7 @@ const UserListScreen = ({ history }) => {
           condensed
           className='table-sm'
         >
+          <Meta title='Users Admin Screen' />
           <thead>
             <tr>
               <th>NAME</th>

@@ -9,6 +9,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import Meta from '../components/Meta'
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
@@ -95,6 +96,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Meta title={`Editting: ${name}`} />
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
@@ -120,7 +122,7 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='price'>
-              <Form.Label>Price Address</Form.Label>
+              <Form.Label>Price</Form.Label>
               <Form.Control
                 type='number'
                 placeholder='Enter Price'

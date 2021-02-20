@@ -12,6 +12,7 @@ import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
+import Meta from '../components/Meta'
 
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
@@ -71,6 +72,7 @@ const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
+      <Meta title='Product Admin Screen' />
       <Row className='align-items-center'>
         <Col>
           <h1>Products</h1>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listOrders } from '../actions/orderActions'
+import Meta from '../components/Meta'
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const OrderListScreen = ({ history }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
+          <Meta title='Order Admin Screen' />
           <thead>
             <tr>
               <th>ID</th>

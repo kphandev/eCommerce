@@ -19,6 +19,8 @@ import {
   createProductReview,
 } from '../actions/productActions'
 import Rating from '../components/Rating'
+import Meta from '../components/Meta'
+
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
 //match gets you info from the url
@@ -78,11 +80,12 @@ const ProductScreen = ({ history, match }) => {
         <Message />
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
-            <Col md={6}>
+            <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
-            <Col md={3}>
+            <Col md={5}>
               <ListGroup variant='flush'>
                 <ListGroupItem>
                   <h3>{product.name}</h3>
@@ -95,21 +98,20 @@ const ProductScreen = ({ history, match }) => {
                   />
                 </ListGroupItem>
                 <ListGroupItem>
-                  <h3>Price: {product.price}</h3>
+                  <h3>Price: ${product.price}</h3>
                 </ListGroupItem>
                 <ListGroupItem>
                   Description: {product.description}
                 </ListGroupItem>
               </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col md={2}>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroupItem>
                     <Row>
-                      <Col>Price: </Col>
                       <Col>
-                        <strong>{product.price}</strong>
+                        <strong>$ {product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroupItem>
@@ -154,7 +156,7 @@ const ProductScreen = ({ history, match }) => {
                       type='button'
                       disabled={product.countInStock === 0}
                     >
-                      Add to Cart
+                      <i className='fas fa-shopping-cart'></i> Add to Cart
                     </Button>
                   </ListGroupItem>
                 </ListGroup>

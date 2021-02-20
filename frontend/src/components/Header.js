@@ -38,7 +38,7 @@ const Header = () => {
                   <NavDropdown
                     title={
                       <span>
-                        <i className='fas fa-user'></i> {userInfo.name}
+                        <i className='fas fa-user fa-lg'></i> {userInfo.name}
                       </span>
                     }
                   >
@@ -53,7 +53,7 @@ const Header = () => {
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i> Sign in
+                    <i className='fas fa-user fa-lg'></i> Sign in
                   </Nav.Link>
                 </LinkContainer>
               )}
@@ -61,7 +61,7 @@ const Header = () => {
                 <NavDropdown
                   title={
                     <span>
-                      <i className='fas fa-tools'></i>
+                      <i className='fas fa-tools fa-lg'></i>
                       <span className='d-sm-block d-md-none'> Admin tools</span>
                     </span>
                   }

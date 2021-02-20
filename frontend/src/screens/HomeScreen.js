@@ -6,7 +6,7 @@ import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import Product from '../components/Product'
 import ProductCarousel from '../components/ProductCarousel'
-
+import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = ({ match }) => {
@@ -27,6 +27,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      <Meta />
       {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
       {loading ? (
@@ -44,11 +45,13 @@ const HomeScreen = ({ match }) => {
               </Col>
             ))}
           </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ''}
-          />
+          <div className='d-flex justify-content-center'>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </div>
         </>
       )}
     </>
