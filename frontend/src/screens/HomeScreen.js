@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
@@ -28,12 +29,55 @@ const HomeScreen = ({ match }) => {
   return (
     <>
       <Meta />
-      {!keyword && <ProductCarousel />}
-      <h1>Latest Products</h1>
+      {!keyword && page === 1 ? (
+        <>
+          <h1>Best Selling Products</h1>
+          <ProductCarousel />
+          <br></br>
+          <div className='d-flex justify-content-between'>
+            <h2>Latest Products</h2>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </div>
+        </>
+      ) : !keyword && page != 1 ? (
+        <div className='d-flex justify-content-between'>
+          <h2>Page {page}</h2>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ''}
+          />
+        </div>
+      ) : (
+        keyword && (
+          <>
+            <Link to='/'>
+              <Button className='btn btn-light '>
+                {' '}
+                <i class='fas fa-arrow-circle-left fa-lg'></i> Go Back
+              </Button>
+            </Link>
+          </>
+        )
+      )}
+
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
+      ) : products.length === 0 ? (
+        <>
+          <div className='d-flex justify-content-center'>
+            <h1>No Results Founds</h1>
+          </div>
+          <div className='d-flex justify-content-center'>
+            <i class='fas fa-frown-open fa-3x' style={{ color: 'green' }}></i>
+          </div>
+        </>
       ) : (
         <>
           <Row>
@@ -45,13 +89,6 @@ const HomeScreen = ({ match }) => {
               </Col>
             ))}
           </Row>
-          <div className='d-flex justify-content-center'>
-            <Paginate
-              pages={pages}
-              page={page}
-              keyword={keyword ? keyword : ''}
-            />
-          </div>
         </>
       )}
     </>
