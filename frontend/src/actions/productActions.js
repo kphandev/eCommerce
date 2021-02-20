@@ -21,13 +21,13 @@ import {
   PRODUCT_CREATE_REVIEW_FAIL,
 } from '../constants/productConstants'
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
   try {
     //puts state in loading mode
     dispatch({ type: PRODUCT_LIST_REQUEST })
 
     //when done loading, dispatch the payload
-    const { data } = await axios.get('/api/products')
+    const { data } = await axios.get(`/api/products?keyword=${keyword}`)
     //payload is set to data *the response from /api/products over to prodReducer
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
   } catch (error) {

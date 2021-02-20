@@ -4,7 +4,17 @@ import Product from '../models/productModel.js'
 // gets all products
 // /api/products
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).populate('user', 'name email')
+  // req.query denotes to ? in url
+  const keyword = req.query.keyword
+    ? {
+        name: { $regex: req.query.keyword, $options: 'i' },
+      }
+    : {}
+
+  const products = await Product.find({ ...keyword }).populate(
+    'user',
+    'name email'
+  )
 
   res.json(products)
 })

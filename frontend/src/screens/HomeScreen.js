@@ -6,7 +6,9 @@ import Loader from '../components/Loader'
 import Product from '../components/Product'
 import { listProducts } from '../actions/productActions'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword
+
   const dispatch = useDispatch()
 
   //this should be equivalent to ../store state
@@ -15,8 +17,8 @@ const HomeScreen = () => {
 
   useEffect(() => {
     //activates listproducts from ../actions/productActions
-    dispatch(listProducts())
-  }, [dispatch])
+    dispatch(listProducts(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>

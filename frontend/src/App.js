@@ -26,17 +26,22 @@ function App() {
       <Header />
       <main className='py-3'>
         <Container>
-          {/* exact makes it so only '/' loads HomeScreen */}
-          <Route path='/orders/:id' component={OrderScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/payment' component={PaymentScreen} />
+          {/* auth  */}
+          <Route path='/' component={HomeScreen} exact />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/login' component={LoginScreen} />
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/product/:id' component={ProductScreen} />
+
+          {/* Ordering */}
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/placeorder' component={PlaceOrderScreen} />
+          <Route path='/shipping' component={ShippingScreen} />
+          <Route path='/payment' component={PaymentScreen} />
+          <Route path='/orders/:id' component={OrderScreen} />
+          <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/search/:keyword' component={HomeScreen} />
+
+          {/* Admin */}
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/userlist' component={UserListScreen} exact />
