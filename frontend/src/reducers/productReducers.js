@@ -28,7 +28,12 @@ export const productListReducer = (state = { products: [] }, action) => {
       return { loading: true, products: [] }
     //this is how the items on the page load, as products is finally set to the payload.
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload }
+      return {
+        loading: false,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      }
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:

@@ -4,6 +4,10 @@ import Product from '../models/productModel.js'
 // gets all products
 // /api/products
 const getProducts = asyncHandler(async (req, res) => {
+  // set items per page
+  const pageSize = 4
+  const page = Number(req.query.pageNumber) || 1
+
   // req.query denotes to ? in url
   const keyword = req.query.keyword
     ? {
@@ -11,12 +15,13 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {}
 
-  const products = await Product.find({ ...keyword }).populate(
-    'user',
-    'name email'
-  )
+  const count = await Product.countDocuments({ ...keyword })
+  const products = await Product.find({ ...keyword })
+    .populate('user', 'name email')
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
 
-  res.json(products)
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
 const getProductById = asyncHandler(async (req, res) => {

@@ -32,11 +32,7 @@ const Header = () => {
               <Route
                 render={({ history }) => <SearchBox history={history} />}
               />
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
-              </LinkContainer>
+
               {userInfo ? (
                 <>
                   <NavDropdown
@@ -65,7 +61,8 @@ const Header = () => {
                 <NavDropdown
                   title={
                     <span>
-                      <i className='fas fa-tools'></i> Admin
+                      <i className='fas fa-tools'></i>
+                      <span className='d-sm-block d-md-none'> Admin tools</span>
                     </span>
                   }
                   id='adminmenu'
@@ -81,6 +78,12 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
+              <LinkContainer to='/cart'>
+                <Nav.Link>
+                  <i className='fas fa-shopping-cart fa-lg'></i>{' '}
+                  <span className='d-sm-block d-md-none'>Cart</span>
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
