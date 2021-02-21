@@ -36,6 +36,18 @@ const LoginScreen = ({ location, history }) => {
     <FormContainer>
       <Meta title='Login | Welcome back' />
       <h1>Sign in</h1>
+      <Row className='py-3'>
+        <Col>
+          <h6>
+            New Customer?{' '}
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : '/register'}
+            >
+              <span style={{ color: 'blue' }}>Register Now</span>
+            </Link>
+          </h6>
+        </Col>
+      </Row>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -59,19 +71,10 @@ const LoginScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='warning rounded'>
           Sign in
         </Button>
       </Form>
-
-      <Row className='py-3'>
-        <Col>
-          New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-            Register
-          </Link>
-        </Col>
-      </Row>
     </FormContainer>
   )
 }

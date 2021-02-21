@@ -7,6 +7,11 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import Meta from '../components/Meta'
 import { CART_RESET } from '../constants/cartConstants'
+import {
+  ORDER_CREATE_RESET,
+  ORDER_DETAILS_RESET,
+} from '../constants/orderConstants'
+import { USER_DETAILS_RESET } from '../constants/userConstants'
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -34,12 +39,13 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/orders/${order._id}`)
+      dispatch({ type: USER_DETAILS_RESET })
+      dispatch({ type: ORDER_CREATE_RESET })
     }
     // eslint-disable-next-line
   }, [history, success])
 
   const placeOrderHandler = () => {
-    dispatch({ type: CART_RESET })
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -51,6 +57,7 @@ const PlaceOrderScreen = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     )
+    dispatch({ type: CART_RESET })
   }
 
   return (
