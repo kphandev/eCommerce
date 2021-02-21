@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import Meta from '../components/Meta'
+import { CART_RESET } from '../constants/cartConstants'
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -38,6 +39,7 @@ const PlaceOrderScreen = ({ history }) => {
   }, [history, success])
 
   const placeOrderHandler = () => {
+    dispatch({ type: CART_RESET })
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -152,11 +154,11 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Button
                   type='button'
-                  className='btn-block'
+                  className='btn-block btn-warning rounded '
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Submit Order
+                  <h5 className='align-items-center'>Submit Order</h5>
                 </Button>
               </ListGroup.Item>
             </ListGroup>

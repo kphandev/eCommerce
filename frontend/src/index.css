@@ -48,3 +48,7 @@ h2 {
 .carousel a {
   margin: 0 auto;
 }
+
+.fa-star {
+  text-shadow: 0 0 2px #000;
+}

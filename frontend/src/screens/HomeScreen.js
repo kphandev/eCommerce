@@ -43,7 +43,7 @@ const HomeScreen = ({ match }) => {
             />
           </div>
         </>
-      ) : !keyword && page != 1 ? (
+      ) : !keyword && page !== 1 ? (
         <div className='d-flex justify-content-between'>
           <h2>Page {page}</h2>
           <Paginate

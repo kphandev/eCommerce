@@ -85,7 +85,7 @@ const ProductScreen = ({ history, match }) => {
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
             </Col>
-            <Col md={5}>
+            <Col md={4}>
               <ListGroup variant='flush'>
                 <ListGroupItem>
                   <h3>{product.name}</h3>
@@ -97,21 +97,16 @@ const ProductScreen = ({ history, match }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroupItem>
-                <ListGroupItem>
-                  <h3>Price: ${product.price}</h3>
-                </ListGroupItem>
-                <ListGroupItem>
-                  Description: {product.description}
-                </ListGroupItem>
+                <ListGroupItem>{product.description}</ListGroupItem>
               </ListGroup>
             </Col>
-            <Col md={2}>
+            <Col md={3}>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroupItem>
                     <Row>
                       <Col>
-                        <strong>$ {product.price}</strong>
+                        <h3>$ {product.price}</h3>
                       </Col>
                     </Row>
                   </ListGroupItem>
@@ -152,7 +147,7 @@ const ProductScreen = ({ history, match }) => {
                   <ListGroupItem>
                     <Button
                       onClick={addToCartHandler}
-                      className='btn-block'
+                      className='btn-block btn-warning'
                       type='button'
                       disabled={product.countInStock === 0}
                     >
@@ -164,13 +159,13 @@ const ProductScreen = ({ history, match }) => {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={8}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
               <ListGroup>
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
-                    <strong>{review.name}</strong>
+                    <h5>{review.name}</h5>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
