@@ -31,7 +31,7 @@ const HomeScreen = ({ match }) => {
       <Meta />
       {!keyword && page === 1 ? (
         <>
-          <h1>Best Selling Products</h1>
+          <h1 className='d-flex justify-content-center best'>Best Sellers</h1>
           <ProductCarousel />
           <br></br>
           <div className='d-flex justify-content-between'>

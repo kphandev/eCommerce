@@ -6,7 +6,7 @@ import { logout } from '../actions/userActions'
 import SearchBox from './SearchBox'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Header = () => {
       <Navbar bg='dark' variant='dark' expand='md' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>eShop</Navbar.Brand>
+            <h3 className='mainlogo'>eShop</h3>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
@@ -82,10 +82,12 @@ const Header = () => {
                 </NavDropdown>
               )}
               <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart fa-lg'></i> (
-                  {cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                <Nav.Link className='d-flex'>
+                  <i className='fas fa-shopping-cart fa-lg'></i>
                   <span className='d-sm-block d-md-none'>Cart</span>
+                  <h6 style={{ color: '#ffc107' }}>
+                    ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                  </h6>
                 </Nav.Link>
               </LinkContainer>
             </Nav>

@@ -52,13 +52,7 @@ const CartScreen = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
 
         {cartItems.length === 0 ? (
-          <Message>
-            {' '}
-            Your Cart is Empty{' '}
-            <Link to='/'>
-              <Button>Go Back</Button>
-            </Link>
-          </Message>
+          <Message>Your Cart is Empty</Message>
         ) : (
           <ListGroup variant='flush'>
             <ListGroupItem>
@@ -129,7 +123,7 @@ const CartScreen = ({ match, location, history }) => {
               <Button
                 onClick={checkOutHandler}
                 type='button'
-                className='btn-block btn-info'
+                className='btn-block btn-warning'
                 disabled={cartItems.length === 0}
               >
                 Proceed to CheckOut

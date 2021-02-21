@@ -18,11 +18,11 @@ const SearchBox = ({ history }) => {
       <span className='d-flex'>
         <Form.Control
           type='text'
-          name='q'
+          id='searchBox'
           onChange={(e) => setKeyword(e.target.value)}
           placeholder='Search Products...'
         ></Form.Control>
-        <Button type='submit' variant='outline-success' className='p-2 mr-sm-5'>
+        <Button type='submit' variant='outline-warning' className='p-2 mr-sm-5'>
           <i class='fas fa-search'></i>
         </Button>
       </span>

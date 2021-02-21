@@ -49,6 +49,35 @@ h2 {
   margin: 0 auto;
 }
 
-.fa-star {
-  text-shadow: 0 0 2px #000;
+.page-item.active .page-link {
+  background-color: #ffc107;
+  border-color: #d39e00;
+  border-radius: 10px;
+}
+
+.mainlogo {
+  cursor: pointer;
+  text-transform: none !important;
+  font-family: 'Leckerli One', cursive;
+  background-color: #ffc107;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 5%;
+  margin: 10px;
+  border: 10px solid;
+  border-color: #da6e00;
+}
+
+.mainlogo:hover {
+  border-radius: 30%;
+  transition: 0.3s;
+}
+
+.carousel img {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#searchBox {
+  width: 100%;
 }
